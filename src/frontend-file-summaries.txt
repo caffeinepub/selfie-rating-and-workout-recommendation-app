@@ -1,0 +1,21 @@
+{
+  "frontend/src/index.css": "Global styles with warm charcoal + neon lime OKLCH color system for light and dark modes, custom design tokens, and base typography.",
+  "frontend/src/App.tsx": "Main application component managing authentication state, profile setup, page navigation, and rendering the appropriate authenticated or unauthenticated view with LooksMax Pro branding.",
+  "frontend/src/components/auth/LoginButton.tsx": "Login/logout button component using Internet Identity with loading states and query cache clearing on logout.",
+  "frontend/src/components/auth/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup, prompting for name and saving to backend.",
+  "frontend/src/components/auth/AuthenticatedOnly.tsx": "Guard component that only renders children when user is authenticated via Internet Identity.",
+  "frontend/src/components/layout/AppLayout.tsx": "Main layout component with header showing LooksMax Pro branding, navigation tabs, and footer with caffeine.ai attribution.",
+  "frontend/src/features/selfie/SelfiePage.tsx": "Selfie capture/upload page with upload-first approach, camera fallback with clear error messaging, preview, validation, submission with progress, and score display with stable camera preview dimensions.",
+  "frontend/src/features/history/HistoryPage.tsx": "History page displaying user's past selfie sessions in a grid with detail modal, using safe rating formatting for all score displays.",
+  "frontend/src/features/history/HistoryEmptyState.tsx": "Empty state component for history page with illustration and call-to-action to take first selfie.",
+  "frontend/src/features/workouts/WorkoutsPage.tsx": "Home workouts page for ages 13+ with preference form (goal, days, equipment) and generated workout plan display with teen-appropriate safety notes.",
+  "frontend/src/features/workouts/WorkoutIllustrationCard.tsx": "Card component displaying the workout illustration image from generated assets.",
+  "frontend/src/components/score/ScoreCard.tsx": "Reusable score display card showing rating and potential rating using safe formatting, with analysis badges, explanation, and disclaimer.",
+  "frontend/src/lib/score/explanations.ts": "Helper functions to map backend ImageResult details into human-readable badges and descriptions.",
+  "frontend/src/lib/selfie/validation.ts": "File validation helpers for selfie uploads (MIME type and size checks).",
+  "frontend/src/lib/selfie/upload.ts": "Image upload helper using ExternalBlob with progress tracking support.",
+  "frontend/src/lib/workouts/generator.ts": "Deterministic workout plan generator creating teen-safe (13+) home workout routines with bodyweight, light equipment, and home gym options emphasizing proper form and safety.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including profile management, selfie submission, and session retrieval.",
+  "frontend/src/lib/blob-storage.ts": "ExternalBlob class implementation for handling blob storage with direct URL access and upload progress tracking, creating a new ArrayBuffer-backed Uint8Array for strict TypeScript type compatibility.",
+  "frontend/src/lib/score/format.ts": "Safe rating formatting utilities that handle edge cases like NaN, undefined, and Infinity to prevent UI crashes when displaying numeric scores."
+}

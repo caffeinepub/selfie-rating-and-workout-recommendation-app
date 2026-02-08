@@ -1,0 +1,126 @@
+{
+  "kind": "build_request",
+  "title": "Looksmaxxing rebrand, fix selfie camera fallback, correct current rating, and teen (13+) home workouts",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-9",
+      "text": "Fix the selfie scoring so the returned \"current rating\" is computed correctly (not always 0) while keeping the existing deterministic/explainable scoring approach and the existing API shape (CrossRealityScore with rating, potentialRating, details).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "the rating not working but the potential rating is can you fix it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting a selfie returns a CrossRealityScore where rating is not always 0 and is a meaningful value on the same scale shown in the UI.",
+        "potentialRating continues to be returned and remains consistent with the scoring rules.",
+        "No breaking changes to the Candid interface/types used by the frontend (CrossRealityScore fields remain rating, potentialRating, details)."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Update the frontend score display to robustly handle and present the fixed current rating (including any existing sessions that may still have old/edge-case values) without crashing or showing NaN/undefined, and ensure the \"Current Rating\" visibly updates after submission.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "the rating not working but the potential rating is"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After a new selfie submission, the ScoreCard shows both Current Rating and Potential Rating values and neither displays NaN/blank.",
+        "History/detail views (if they render scores) remain functional for previously saved sessions even if older ratings were 0.0.",
+        "No console errors are produced by rating formatting (e.g., toFixed) for valid backend responses."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Make the selfie flow usable when device camera capture is unavailable by providing an upload-first experience and a clear fallback path: if camera is unsupported or errors/permission is denied, hide/disable camera capture and guide the user to upload a photo instead (while still keeping camera capture available when it actually works).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "So i cant use the camera"
+        ]
+      },
+      "acceptanceCriteria": [
+        "If camera support is false or camera start fails, the UI does not block the user from submitting; the upload option remains available and works end-to-end.",
+        "Camera errors/permission denial are presented in a user-friendly message with an explicit suggestion to use Upload Photo.",
+        "When camera is supported and permission is granted, the camera capture path continues to work as before (video preview + capture)."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Rebrand the app’s user-facing name and copy to match a looksmaxxing positioning by replacing \"Rate & Elevate\" and related generic fitness taglines across the main entry screen and the app header with a looksmaxxing-themed app name and description (English text).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "change the name to better and were doing looksmaxxing"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The unauthenticated landing screen (App.tsx) no longer displays \"Rate & Elevate\" and instead shows a looksmaxxing-themed app name and description in English.",
+        "The authenticated app header (AppLayout.tsx) no longer displays \"Rate & Elevate\" and instead shows the new looksmaxxing-themed app name.",
+        "Alt text for the app icon is updated to the new app name."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Adjust the Workouts experience to focus on age-appropriate home workouts for teens (13+) by updating the workouts copy and workout plan generator content to be teen-safe, home-friendly (bodyweight/minimal equipment), and explicitly framed for ages 13 and older.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "for the workouts do like home workouts for kids and stuff like 13 and older"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Workouts page header/description and plan description text clearly indicate the workouts are intended for ages 13+ and are home workouts.",
+        "Generated plans avoid heavy/barbell-focused gym programming by default and emphasize bodyweight/minimal equipment options appropriate for teens.",
+        "The on-screen safety notes include a teen-appropriate safety disclaimer (e.g., form-first, stop if pain, consider a parent/coach/trainer)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor with logic in backend/main.mo (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui (compose them only).",
+    "Do not edit immutable frontend hook paths listed in SYSTEM_CONTEXT (frontend/src/hooks/useInternetIdentity.ts / .tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
+    "Use English for all user-facing text.",
+    "Do not introduce third-party AI/LLM services for scoring or workouts."
+  ],
+  "nonGoals": [
+    "Adding third-party authentication providers (only Internet Identity is supported).",
+    "Adding real-time features (WebSockets/chat/push).",
+    "Creating workouts intended for users under 13.",
+    "Adding external databases or non-Motoko backend services."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": [
+      "Update the existing app icon to a looksmaxxing aesthetic with a modern, high-contrast, fitness/self-improvement vibe using warm/neutral tones (app-icon.dim_512x512.png > app-icon.dim_512x512.png)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

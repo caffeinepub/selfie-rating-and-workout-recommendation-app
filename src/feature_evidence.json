@@ -1,0 +1,93 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-frontend-score-display-to-robustly-handle-and-present-the-fixed-current-rating-including-any-existing-sessions-that-may-still-have-old-edge-case-values-without-crashing-or-showing-nan-undefined-and-ensure-the-current-rating-visibly-updates-after-submission",
+      "featureTitle": "Update the frontend score display to robustly handle and present the fixed current rating (including any existing sessions that may still have old/edge-case values) without crashing or showing NaN/undefined, and ensure the \"Current Rating\" visibly updates after submission.",
+      "files": [
+        "frontend/src/components/score/ScoreCard.tsx",
+        "frontend/src/features/history/HistoryPage.tsx",
+        "frontend/src/lib/score/format.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-make-the-selfie-flow-usable-when-device-camera-capture-is-unavailable-by-providing-an-upload-first-experience-and-a-clear-fallback-path-if-camera-is-unsupported-or-errors-permission-is-denied-hide-disable-camera-capture-and-guide-the-user-to-upload-a-photo-instead-while-still-keeping-camera-capture-available-when-it-actually-works",
+      "featureTitle": "Make the selfie flow usable when device camera capture is unavailable by providing an upload-first experience and a clear fallback path: if camera is unsupported or errors/permission is denied, hide/disable camera capture and guide the user to upload a photo instead (while still keeping camera capture available when it actually works).",
+      "files": [
+        "frontend/src/features/selfie/SelfiePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-rebrand-the-app-s-user-facing-name-and-copy-to-match-a-looksmaxxing-positioning-by-replacing-rate-elevate-and-related-generic-fitness-taglines-across-the-main-entry-screen-and-the-app-header-with-a-looksmaxxing-themed-app-name-and-description-english-text",
+      "featureTitle": "Rebrand the app’s user-facing name and copy to match a looksmaxxing positioning by replacing \"Rate & Elevate\" and related generic fitness taglines across the main entry screen and the app header with a looksmaxxing-themed app name and description (English text).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/AppLayout.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-adjust-the-workouts-experience-to-focus-on-age-appropriate-home-workouts-for-teens-13-by-updating-the-workouts-copy-and-workout-plan-generator-content-to-be-teen-safe-home-friendly-bodyweight-minimal-equipment-and-explicitly-framed-for-ages-13-and-older",
+      "featureTitle": "Adjust the Workouts experience to focus on age-appropriate home workouts for teens (13+) by updating the workouts copy and workout plan generator content to be teen-safe, home-friendly (bodyweight/minimal equipment), and explicitly framed for ages 13 and older.",
+      "files": [
+        "frontend/src/features/workouts/WorkoutsPage.tsx",
+        "frontend/src/lib/workouts/generator.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

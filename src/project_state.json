@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Looksmaxxing-focused selfie app where users submit selfies to receive a current rating and potential rating (with explanations) plus age-appropriate home workout suggestions (e.g., for ages 13+).",
+  "architectural_notes": [
+    "Workouts content should be tailored for at-home routines and age-appropriate guidance for users 13+ (exercise selection, intensity, and safety cues)."
+  ],
+  "known_issues": [
+    "Device camera is not usable in the selfie flow (camera capture unavailable/non-functional).",
+    "The 'current rating' output is not working while 'potential rating' does work."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Edit Images\n- Update the existing app icon to a looksmaxxing aesthetic with a modern, high-contrast, fitness/self-improvement vibe using warm/neutral tones (app-icon.dim_512x512.png > app-icon.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-internet-identity-sign-in-and-require-authentication-before-a-user-can-create-view-their-selfie-ratings-and-workout-plan",
+      "title": "Implement Internet Identity sign-in and require authentication before a user can create/view their selfie ratings and workout plan.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-selfie-flow-that-lets-a-signed-in-user-capture-or-upload-a-selfie-image-via-device-camera-when-available-otherwise-file-upload-preview-it-and-submit-it-for-scoring",
+      "title": "Add a 'Selfie' flow that lets a signed-in user capture or upload a selfie image (via device camera when available, otherwise file upload), preview it, and submit it for scoring.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-deterministic-explainable-scoring-system-that-produces-1-a-current-rating-and-2-a-potential-rating-from-the-selfie-submission-without-using-third-party-ai-llm-services-show-an-explanation-of-how-each-score-was-derived",
+      "title": "Implement a deterministic, explainable scoring system that produces (1) a current 'rating' and (2) a 'potential rating' from the selfie submission, without using third-party AI/LLM services. Show an explanation of how each score was derived.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-history-view-where-a-user-can-browse-their-past-selfie-entries-open-a-detail-view-and-see-the-selfie-image-thumbnail-rating-potential-rating-and-the-score-explanation",
+      "title": "Add a 'History' view where a user can browse their past selfie entries, open a detail view, and see the selfie image/thumbnail, rating, potential rating, and the score explanation.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-in-app-workouts-experience-that-provides-workout-routines-and-recommendations-recommendations-must-be-derived-from-in-app-inputs-e-g-selected-goals-equipment-availability-weekly-frequency-and-or-the-selfie-score-results-and-must-not-require-external-services",
+      "title": "Add an in-app 'Workouts' experience that provides workout routines and recommendations. Recommendations must be derived from in-app inputs (e.g., selected goals, equipment availability, weekly frequency) and/or the selfie score results, and must not require external services.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-consistent-distinctive-visual-theme-for-the-app-colors-typography-spacing-component-styling-suitable-for-a-fitness-self-improvement-product-and-apply-it-across-all-screens-do-not-use-a-blue-purple-primary-palette",
+      "title": "Create a consistent, distinctive visual theme for the app (colors, typography, spacing, component styling) suitable for a fitness/self-improvement product, and apply it across all screens. Do not use a blue/purple primary palette.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-add-required-static-images-to-the-frontend-and-render-them-in-the-ui-where-appropriate-e-g-app-icon-and-empty-states-storing-them-under-frontend-public-assets-generated",
+      "title": "Generate and add required static images to the frontend and render them in the UI where appropriate (e.g., app icon and empty states), storing them under frontend/public/assets/generated.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-frontend-score-display-to-robustly-handle-and-present-the-fixed-current-rating-including-any-existing-sessions-that-may-still-have-old-edge-case-values-without-crashing-or-showing-nan-undefined-and-ensure-the-current-rating-visibly-updates-after-submission",
+      "title": "Update the frontend score display to robustly handle and present the fixed current rating (including any existing sessions that may still have old/edge-case values) without crashing or showing NaN/undefined, and ensure the \"Current Rating\" visibly updates after submission.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-selfie-flow-usable-when-device-camera-capture-is-unavailable-by-providing-an-upload-first-experience-and-a-clear-fallback-path-if-camera-is-unsupported-or-errors-permission-is-denied-hide-disable-camera-capture-and-guide-the-user-to-upload-a-photo-instead-while-still-keeping-camera-capture-available-when-it-actually-works",
+      "title": "Make the selfie flow usable when device camera capture is unavailable by providing an upload-first experience and a clear fallback path: if camera is unsupported or errors/permission is denied, hide/disable camera capture and guide the user to upload a photo instead (while still keeping camera capture available when it actually works).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rebrand-the-app-s-user-facing-name-and-copy-to-match-a-looksmaxxing-positioning-by-replacing-rate-elevate-and-related-generic-fitness-taglines-across-the-main-entry-screen-and-the-app-header-with-a-looksmaxxing-themed-app-name-and-description-english-text",
+      "title": "Rebrand the app’s user-facing name and copy to match a looksmaxxing positioning by replacing \"Rate & Elevate\" and related generic fitness taglines across the main entry screen and the app header with a looksmaxxing-themed app name and description (English text).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-the-workouts-experience-to-focus-on-age-appropriate-home-workouts-for-teens-13-by-updating-the-workouts-copy-and-workout-plan-generator-content-to-be-teen-safe-home-friendly-bodyweight-minimal-equipment-and-explicitly-framed-for-ages-13-and-older",
+      "title": "Adjust the Workouts experience to focus on age-appropriate home workouts for teens (13+) by updating the workouts copy and workout plan generator content to be teen-safe, home-friendly (bodyweight/minimal equipment), and explicitly framed for ages 13 and older.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Selfie capture/upload feature for users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Provide a rating based on the user's selfie",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Provide a separate 'potential rating' for the user based on the selfie",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "In-app workouts/workout recommendations for users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Create backend storage for selfie sessions per user, including image bytes (or a stored thumbnail), timestamp, and computed results: 'rating' and 'potential rating'. Only the owner can list/read their entries.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Rebrand/rename the app to better match a 'looksmaxxing' positioning",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Adjust workouts to focus on home workouts appropriate for teens (13+)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Fix the selfie scoring so the returned \"current rating\" is computed correctly (not always 0) while keeping the existing deterministic/explainable scoring approach and the existing API shape (CrossRealityScore with rating, potentialRating, details).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Selfie rating and workout recommendation app",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Looksmaxxing rebrand, robust rating display, camera upload fallback, and teen (13+) home workouts",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "summary": "Make score rendering resilient to edge-case ratings and ensure Current Rating visibly updates after selfie submission across score and history views.",
+      "acceptanceCriteria": [
+        "After a new selfie submission, the ScoreCard shows both Current Rating and Potential Rating values and neither displays NaN/blank.",
+        "History/detail views (if they render scores) remain functional for previously saved sessions even if older ratings were 0.0.",
+        "No console errors are produced by rating formatting (e.g., toFixed) for valid backend responses."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/score/format.ts",
+          "operation": "create",
+          "description": "Add a small formatting utility to safely display rating numbers (guards for undefined/NaN/Infinity and preserves 0.0) so UI never crashes when calling numeric formatters."
+        },
+        {
+          "path": "frontend/src/components/score/ScoreCard.tsx",
+          "operation": "modify",
+          "description": "Use the new safe rating formatter for score.rating and score.potentialRating (instead of direct toFixed) and ensure the Current Rating section always renders a stable, meaningful value on the UI scale."
+        },
+        {
+          "path": "frontend/src/features/history/HistoryPage.tsx",
+          "operation": "modify",
+          "description": "Update history card and detail modal rating displays to use the same safe rating formatting to prevent NaN/undefined/toFixed errors for older or edge-case sessions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Provide an upload-first selfie experience with a clear, non-blocking fallback when camera is unsupported, denied, or fails to start, while preserving camera capture when it works.",
+      "acceptanceCriteria": [
+        "If camera support is false or camera start fails, the UI does not block the user from submitting; the upload option remains available and works end-to-end.",
+        "Camera errors/permission denial are presented in a user-friendly message with an explicit suggestion to use Upload Photo.",
+        "When camera is supported and permission is granted, the camera capture path continues to work as before (video preview + capture)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/selfie/SelfiePage.tsx",
+          "operation": "modify",
+          "description": "Use the selected component 'camera' (useCamera hook) to detect support/errors and implement an upload-first chooser UI: prioritize Upload Photo, hide/disable camera CTA when isSupported is false or startCamera fails, and show a friendly fallback message that explicitly directs users to Upload Photo. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Rebrand the app name and user-facing copy to a looksmaxxing positioning on the landing screen and authenticated header, including updated icon alt text.",
+      "acceptanceCriteria": [
+        "The unauthenticated landing screen (App.tsx) no longer displays \"Rate & Elevate\" and instead shows a looksmaxxing-themed app name and description in English.",
+        "The authenticated app header (AppLayout.tsx) no longer displays \"Rate & Elevate\" and instead shows the new looksmaxxing-themed app name.",
+        "Alt text for the app icon is updated to the new app name."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the unauthenticated landing title/subtitle copy with a looksmaxxing-themed app name and English description; update the app icon alt text to match the new name."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Update the authenticated header brand name text and the app icon alt text to the new looksmaxxing-themed app name while keeping existing navigation structure."
+        },
+        {
+          "path": "frontend/public/assets/generated/app-icon.dim_512x512.png",
+          "operation": "modify",
+          "description": "Replace/update the existing app icon with the new looksmaxxing aesthetic per imageRequirements.edits (warm/neutral tones, modern, high-contrast, fitness/self-improvement vibe). Source image: frontend/public/assets/generated/app-icon.dim_512x512.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Revise workouts copy and generator to produce teen-safe (13+) home-friendly plans emphasizing bodyweight/minimal equipment, with appropriate safety notes.",
+      "acceptanceCriteria": [
+        "The Workouts page header/description and plan description text clearly indicate the workouts are intended for ages 13+ and are home workouts.",
+        "Generated plans avoid heavy/barbell-focused gym programming by default and emphasize bodyweight/minimal equipment options appropriate for teens.",
+        "The on-screen safety notes include a teen-appropriate safety disclaimer (e.g., form-first, stop if pain, consider a parent/coach/trainer)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/workouts/WorkoutsPage.tsx",
+          "operation": "modify",
+          "description": "Update Workouts page header/description to explicitly frame plans as home workouts for ages 13+, adjust preference copy (especially equipment labels) to be teen-safe, and update the on-screen safety notes to include a teen-appropriate disclaimer (form-first, stop if pain, consider a parent/coach/trainer)."
+        },
+        {
+          "path": "frontend/src/lib/workouts/generator.ts",
+          "operation": "modify",
+          "description": "Adjust generated plan descriptions to explicitly reference ages 13+ and home workouts, and revise the 'gym' plan templates to avoid heavy/barbell-focused programming by default (favor bodyweight/minimal equipment patterns and light/moderate dumbbell/machine-friendly options appropriate for teens)."
+        }
+      ]
+    }
+  ]
+}
